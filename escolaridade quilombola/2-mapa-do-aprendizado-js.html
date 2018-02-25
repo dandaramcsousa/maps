@@ -25,13 +25,13 @@ var svg = d3.select("svg"),
 var path = d3.geoPath();
 
 // a escala de cores
-var color = d3.scaleThreshold().domain([-15,0,15,30,45]).range(d3.schemeSpectral[5]);
+var color = d3.scaleThreshold().domain([0,4,8,12, 16]).range(d3.schemeRdYlGn[5]);
 
 // função aux definida em legenda-d3-cor.js
-desenhaLegenda(-30, 60, color, "Crescimento entre 2011 e 2013 (%)")
+desenhaLegenda(0, 60, color, "Número de estabelecimentos de Ensino Fundamental em áreas remanescentes de Quilombos")
 
 d3.queue()
-    .defer(d3.json, "geo4-municipios-e-aprendizado-simplificado.json")
+    .defer(d3.json, "geo4-municipios-e-ensino-simplificado.json")
     .await(ready);
 
 function ready(error, dados) {
@@ -45,10 +45,10 @@ function ready(error, dados) {
     .data(cidades)
     .enter()
     .append("path")
-      .attr("fill", d => {let valor = d.properties["Crescimento entre 2011 e 2013 (pp*)"]; return valor === "NA" ? '#e0e0eb' : color(valor)})
+      .attr("fill", d => {let valor = d.properties["2016"]; return valor === "NA" ? '#e0e0eb' : color(valor)})
       .attr("d", path)
     .append("title")
-      .text(d => d.properties.Cidade + ": " + d.properties["Crescimento entre 2011 e 2013 (%)"] + "%");
+      .text(d => d.properties.Cidade + ": " + d.properties["2016"]);
 }
 
 </script>

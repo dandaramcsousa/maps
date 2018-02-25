@@ -1,5 +1,5 @@
             
-EXP_ESCALA_CRESC_COLOR='z = d3.scaleThreshold().domain([-15,0,15,30,45]).range(d3.schemeSpectral[5]),
+EXP_ESCALA_CRESC_COLOR='z = d3.scaleThreshold().domain([0,4,8,12, 16]).range(d3.schemeRdYlGn[5]),
             d.features.forEach(f => f.properties.fill = z(f.properties["2016"])),
             d'
   
